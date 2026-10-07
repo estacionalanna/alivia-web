@@ -99,6 +99,7 @@
         <h3>De psicólogos</h3>
         <ul>
           <li>Nombre, número de matrícula profesional, especialidades, presentación, teléfono, foto de perfil y si estás en línea.</li>
+          <li>Tu número de WhatsApp, que indicás al registrarte. Solo lo ve quien administra Alivia, para contactarte y verificar tu identidad profesional; no se muestra a los pacientes.</li>
           <li>Tus lugares de atención (por ejemplo consultorio, hospital o policlínico): nombre, dirección, días, modalidad y, si los cargás, el membrete y el pie institucional como imágenes.</li>
           <li>Tu disponibilidad, tus modalidades de atención (teleconsulta y presencial) y tus precios.</li>
           <li>Tus datos de cobro: la imagen de tu código QR, el tipo de alias (CI, correo, teléfono o RUC) y su valor.</li>
@@ -134,7 +135,7 @@
           <li><strong>Mostrar a los pacientes los psicólogos verificados, sus lugares de atención y sus horarios.</strong> Es parte del servicio que pedís al usar la app.</li>
           <li><strong>Gestionar reservas, comprobantes y confirmación de citas.</strong> Es parte del servicio.</li>
           <li><strong>Calcular y gestionar la comisión de Alivia.</strong> Usamos el monto de cada consulta confirmada y el saldo de comisión acumulado de cada psicólogo, y podemos suspender una cuenta que tenga saldo sin pagar. No usamos el contenido clínico para esto.</li>
-          <li><strong>Verificar la matrícula de los psicólogos antes de publicar su perfil.</strong> Lo hacemos para proteger a los pacientes.</li>
+          <li><strong>Verificar a los psicólogos antes de publicar su perfil.</strong> Les pedimos por WhatsApp, fuera de la app, fotos de su registro de habilitación del Ministerio de Salud, su título de psicología y sus certificados de especialización. Las usamos solo para comprobar que son profesionales y proteger a los pacientes; no se cargan en la app.</li>
           <li><strong>Permitir que un psicólogo te asigne cuestionarios y vea los resultados, gestione tu ficha y genere constancias, informes y certificados.</strong> Se basa en tu consentimiento, porque son datos de salud.</li>
           <li><strong>Mostrarle a tu psicólogo un aviso cuando un cuestionario tiene una respuesta que indica posible riesgo</strong> (sección 4).</li>
           <li><strong>Enviarte notificaciones</strong>, como recordatorios de citas y avisos sobre el estado de tus reservas, si das permiso. Podés desactivarlas cuando quieras.</li>
@@ -161,6 +162,7 @@
           <li><strong>Con los pacientes.</strong> De cada psicólogo aprobado se muestran su nombre, foto, especialidades, matrícula, presentación, lugares donde atiende, si está en línea y su disponibilidad. Sus datos de cobro (QR y alias) se muestran solo en el paso de pago, al reservar. Los datos de contacto privados del psicólogo no se muestran en el buscador.</li>
           <li><strong>Con Alivia (administración).</strong> Vemos los datos necesarios para aprobar psicólogos, controlar los saldos de comisión, gestionar suspensiones y dar soporte.</li>
           <li><strong>Con Google.</strong> Usamos Firebase (Authentication, Cloud Firestore y Cloud Storage) para las cuentas, la base de datos y los archivos que subís.</li>
+          <li><strong>Con WhatsApp (Meta).</strong> Si te escribimos o nos escribís por WhatsApp para verificar tu registro, esa comunicación se rige además por las condiciones y la política de privacidad de WhatsApp.</li>
           <li><strong>Con los servicios que entregan las notificaciones.</strong> Para que un aviso llegue a tu celular, el token y el texto de la notificación pasan por Expo (servicio de notificaciones de Expo) y por el sistema de mensajería de Google (Firebase Cloud Messaging) en Android. Como el texto es genérico, no se envían datos clínicos.</li>
           <li><strong>Con servicios de videollamada.</strong> Si usás el enlace que te manda el psicólogo, se aplican las políticas de ese servicio. Alivia no recibe ni guarda el contenido de la videollamada.</li>
           <li><strong>Con autoridades.</strong> Solo si una ley o una orden judicial válida nos obliga.</li>
