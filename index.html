@@ -4,16 +4,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Alivia: psicólogos verificados en Paraguay</title>
-  <meta name="description" content="Encontrá un psicólogo verificado, reservá tu consulta y conectate por videollamada. Alivia, salud mental para Paraguay.">
+  <meta name="description" content="Encontrá un psicólogo verificado, reservá tu consulta y atendete por videollamada, en persona o por mensajes. Alivia, salud mental para Paraguay.">
   <meta name="theme-color" content="#F3F1FA">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_PY">
   <meta property="og:title" content="Alivia: psicólogos verificados en Paraguay">
-  <meta property="og:description" content="Elegí un psicólogo verificado, reservá un horario y conectate por videollamada.">
+  <meta property="og:description" content="Elegí un psicólogo verificado, reservá un horario y atendete por videollamada, en persona o por mensajes.">
   <link rel="icon" href="assets/img/favicon-64.png" type="image/png" sizes="64x64">
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
   <link rel="preload" href="assets/fonts/alegreya-700.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/estilos.css">
+  <script src="assets/js/descarga.js" defer></script>
 </head>
 <body>
   <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -39,24 +40,26 @@
       <div class="contenedor hero__rejilla">
         <div>
           <h1>Hablá con un psicólogo verificado, en el horario que te sirva.</h1>
-          <p class="hero__bajada">Alivia reúne a psicólogos de Paraguay en una app. Elegís al profesional, reservás un horario, pagás por transferencia y te conectás por videollamada.</p>
+          <p class="hero__bajada">Alivia reúne a psicólogos de Paraguay en una app. Elegís al profesional, reservás un horario, pagás por transferencia y te atendés por videollamada, en persona o por mensajes.</p>
           <div class="acciones">
-            <a class="boton" href="mailto:alannasoft.py@gmail.com?subject=Quiero%20que%20me%20avisen%20cuando%20Alivia%20est%C3%A9%20lista">Quiero que me avisen</a>
+            <a class="boton" data-descarga href="mailto:alannasoft.py@gmail.com?subject=Quiero%20que%20me%20avisen%20cuando%20Alivia%20est%C3%A9%20lista">Quiero que me avisen</a>
             <a class="enlace-fuerte" href="#psicologos">Soy psicólogo</a>
           </div>
-          <p class="estado">Alivia está en desarrollo. Escribinos y te avisamos cuando se pueda descargar.</p>
+          <p class="estado" data-sin-link>Alivia está en desarrollo. Escribinos y te avisamos cuando se pueda descargar.</p>
+          <p class="estado" data-con-link hidden>Alivia ya está lista para descargar.</p>
           <p class="estado">¿Estás pasando un momento muy difícil? <a href="#ayuda">Hay ayuda gratuita ahora mismo.</a></p>
         </div>
 
-        <figure class="aliento">
-          <div class="aliento__dibujo" aria-hidden="true">
-            <span class="aliento__guia"></span>
-            <span class="aliento__circulo"></span>
-            <span class="aliento__texto aliento__texto--inhala">Inhalá</span>
-            <span class="aliento__texto aliento__texto--exhala">Exhalá</span>
-            <span class="aliento__texto aliento__texto--fija">Respirá despacio</span>
-          </div>
-          <figcaption>Probalo ahora: inhalá mientras el círculo crece (4 segundos) y exhalá mientras se achica (6 segundos). En la app, esta respiración guiada está siempre a mano.</figcaption>
+        <figure class="aliento" data-invitar="Respiración guiada" data-detalle="En la app, el círculo te guía para respirar con calma: 4 segundos para inhalar y 6 para exhalar, cuando la necesites." data-ayuda>
+          <button type="button" class="aliento__boton" aria-label="Respiración guiada. Tocá para saber cómo probarla en la app.">
+            <span class="aliento__dibujo" aria-hidden="true">
+              <span class="aliento__guia"></span>
+              <span class="aliento__circulo"></span>
+              <span class="aliento__texto">Respirá despacio</span>
+            </span>
+            <span class="aliento__pista">Probala en la app</span>
+          </button>
+          <figcaption>Así se ve la respiración guiada de la app: 4 segundos para inhalar y 6 para exhalar. En la app, está siempre a mano.</figcaption>
         </figure>
       </div>
     </section>
@@ -68,25 +71,35 @@
           <p class="intro">Todo el proceso pasa dentro de la app, desde elegir al profesional hasta unirte a la consulta.</p>
         </div>
         <ul class="filas">
-          <li>
+          <li data-invitar="Psicólogos revisados" data-detalle="En la app ves el perfil de cada psicólogo: sus especialidades, su matrícula, su presentación y dónde atiende.">
             <h3>Psicólogos revisados</h3>
             <p>Antes de aparecer en el buscador, cada psicólogo pasa por una revisión manual de su matrícula profesional.</p>
+            <button type="button" class="ver-app">Verlo en la app</button>
           </li>
-          <li>
+          <li data-invitar="Horarios reales" data-detalle="En la app elegís el día y la hora entre los horarios que el psicólogo dejó libres, y tu turno queda reservado.">
             <h3>Horarios reales</h3>
             <p>Cada profesional carga los días y horas en que atiende. Elegís uno libre y queda reservado para vos.</p>
+            <button type="button" class="ver-app">Verlo en la app</button>
           </li>
-          <li>
+          <li data-invitar="Pago directo al profesional" data-detalle="En la app ves el QR o el alias del psicólogo en el paso de pago, transferís y subís tu comprobante. Alivia no guarda datos de tu tarjeta ni de tu banco.">
             <h3>Pago directo al profesional</h3>
             <p>Transferís al QR o alias del psicólogo y subís el comprobante. Alivia no guarda datos de tu tarjeta ni de tu banco.</p>
+            <button type="button" class="ver-app">Verlo en la app</button>
           </li>
-          <li>
-            <h3>Videollamada</h3>
-            <p>Cuando el psicólogo confirma tu turno, te llega el enlace para unirte desde la app.</p>
+          <li data-invitar="Videollamada, presencial o por mensajes" data-detalle="En la app elegís cómo querés tu consulta. Si es por videollamada, te llega el enlace cuando el psicólogo confirma. Si es presencial, ves la dirección del consultorio. Si es por mensajes, conversás con el profesional por WhatsApp durante el plazo que reservaste.">
+            <h3>Videollamada, presencial o por mensajes</h3>
+            <p>Elegís cómo querés que sea tu consulta. Cuando el psicólogo confirma tu turno, la app te muestra lo que necesitás: el enlace, la dirección o el acceso al chat.</p>
+            <button type="button" class="ver-app">Verlo en la app</button>
           </li>
-          <li>
+          <li data-invitar="Tus turnos" data-detalle="En la app tenés una sección con todos tus turnos, lo próximo arriba. Cuando se acerca la hora de una videollamada, aparece el botón para unirte.">
+            <h3>Tus turnos, ordenados</h3>
+            <p>Ves tus próximos turnos arriba y, cuando llega la hora de la videollamada, un botón para unirte.</p>
+            <button type="button" class="ver-app">Verlo en la app</button>
+          </li>
+          <li data-invitar="Quién está en línea" data-detalle="El inicio de la app te muestra los profesionales que están disponibles en este momento.">
             <h3>Quién está en línea</h3>
             <p>El inicio te muestra los profesionales que están disponibles en este momento.</p>
+            <button type="button" class="ver-app">Verlo en la app</button>
           </li>
         </ul>
       </div>
@@ -95,17 +108,44 @@
     <section class="seccion seccion--calida" id="gratis">
       <div class="contenedor">
         <h2>Herramientas gratis, sin reservar nada</h2>
-        <p class="intro">El inicio de la app es gratuito para todos los pacientes.</p>
-        <div class="dos">
-          <article>
+        <p class="intro">El inicio de la app es gratuito para todos los pacientes. Acá ves qué hay; para usarlas necesitás la app.</p>
+        <ul class="tarjetas">
+          <li data-invitar="Carta del día" data-detalle="En la app tenés un mensaje nuevo cada día para empezar con otra mirada.">
             <h3>Carta del día</h3>
             <p>Un mensaje nuevo cada día para empezar con otra mirada.</p>
-          </article>
-          <article>
+            <button type="button" class="ver-app">Probarla en la app</button>
+          </li>
+          <li data-invitar="Necesito calmarme ahora" data-detalle="En la app tenés una guía paso a paso para bajar la ansiedad: la técnica 5-4-3-2-1, respiración guiada y el número de la línea 155 por si necesitás hablar con alguien." data-ayuda>
             <h3>Necesito calmarme ahora</h3>
             <p>Una guía paso a paso para bajar la ansiedad: la técnica 5-4-3-2-1, respiración guiada y el número de la línea 155 por si necesitás hablar con alguien.</p>
-          </article>
-        </div>
+            <button type="button" class="ver-app">Probarla en la app</button>
+          </li>
+          <li data-invitar="Respiración guiada" data-detalle="En la app, el círculo te guía para respirar con calma: 4 segundos para inhalar y 6 para exhalar, cuando la necesites." data-ayuda>
+            <h3>Respiración guiada</h3>
+            <p>Un círculo que crece y se achica para acompañar tu respiración, siempre a mano.</p>
+            <button type="button" class="ver-app">Probarla en la app</button>
+          </li>
+          <li data-invitar="Sonidos de relajación" data-detalle="En la app tenés sonidos para acompañar un momento de calma.">
+            <h3>Sonidos de relajación</h3>
+            <p>Sonidos para acompañar un momento de calma.</p>
+            <button type="button" class="ver-app">Probarlos en la app</button>
+          </li>
+          <li data-invitar="Escribir lo que siento" data-detalle="En la app tenés un diario para vos. Lo que escribís se guarda solo en tu celular: no lo ve tu psicólogo ni nadie más.">
+            <h3>Escribir lo que siento</h3>
+            <p>Un diario para vos. Lo que escribís queda solo en tu celular.</p>
+            <button type="button" class="ver-app">Probarlo en la app</button>
+          </li>
+          <li data-invitar="Persona de confianza" data-detalle="En la app cargás a alguien de confianza y, cuando necesitás apoyo, la llamás o le escribís desde ahí. Esos datos quedan solo en tu celular.">
+            <h3>Persona de confianza</h3>
+            <p>Cargás a alguien de confianza para llamarla o escribirle cuando necesites apoyo.</p>
+            <button type="button" class="ver-app">Verla en la app</button>
+          </li>
+          <li data-invitar="Avisos y pausas" data-detalle="En la app elegís en qué momentos del día querés que te avise para hacer una pausa. Es opcional y lo cambiás cuando quieras.">
+            <h3>Avisos y pausas</h3>
+            <p>Elegís en qué momentos del día querés un aviso para hacer una pausa. Es opcional.</p>
+            <button type="button" class="ver-app">Verlo en la app</button>
+          </li>
+        </ul>
       </div>
     </section>
 
@@ -113,33 +153,59 @@
       <div class="contenedor partida">
         <div class="partida__titulo">
           <h2>Para psicólogos</h2>
-          <p class="intro">Atendé online y llevá tus consultas ordenadas, con tus propios horarios y tu propio cobro.</p>
-          <a class="boton" href="mailto:alannasoft.py@gmail.com?subject=Quiero%20sumarme%20a%20Alivia%20como%20psic%C3%B3logo%2Fa">Quiero sumarme</a>
+          <p class="intro">Atendé online o en persona y llevá tus consultas ordenadas, con tus propios horarios y tu propio cobro.</p>
+          <a class="boton" data-descarga href="mailto:alannasoft.py@gmail.com?subject=Quiero%20sumarme%20a%20Alivia%20como%20psic%C3%B3logo%2Fa">Quiero sumarme</a>
         </div>
         <ul class="filas">
-          <li>
+          <li data-publico="psicologo" data-invitar="Perfil verificado" data-detalle="En la app cargás tu matrícula, tu especialidad, tu foto y una presentación. Después de nuestra revisión, aparecés en el buscador.">
             <h3>Perfil verificado</h3>
             <p>Cargás tu matrícula, especialidad, foto y una presentación. Después de nuestra revisión, aparecés en el buscador.</p>
+            <button type="button" class="ver-app">Verlo en la app</button>
           </li>
-          <li>
+          <li data-publico="psicologo" data-invitar="Tu agenda, día por día" data-detalle="En la app marcás en un calendario los horarios libres de cada día. Los pacientes solo ven y reservan lo que dejaste disponible.">
             <h3>Tu agenda, día por día</h3>
             <p>Marcás en un calendario los horarios libres de cada día. Los pacientes solo ven y reservan lo que dejaste disponible.</p>
+            <button type="button" class="ver-app">Verlo en la app</button>
           </li>
-          <li>
+          <li data-publico="psicologo" data-invitar="Cobrás con tu propio QR o alias" data-detalle="En la app el paciente te transfiere directamente y sube el comprobante. Vos confirmás el turno desde ahí.">
             <h3>Cobrás con tu propio QR o alias</h3>
-            <p>El paciente te transfiere directamente y sube el comprobante. Vos confirmás el turno y mandás el enlace de la videollamada.</p>
+            <p>El paciente te transfiere directamente y sube el comprobante. Vos confirmás el turno.</p>
+            <button type="button" class="ver-app">Verlo en la app</button>
           </li>
-          <li>
+          <li data-publico="psicologo" data-invitar="Videollamada, presencial o por mensajes" data-detalle="En la app elegís qué modalidades ofrecés. Para la videollamada mandás el enlace al confirmar; para la presencial cargás tus lugares de atención; y los telemensajes los configurás con tu precio, tu cupo y tu franja horaria.">
+            <h3>Videollamada, presencial o por mensajes</h3>
+            <p>Ofrecés las modalidades que quieras, con tus lugares de atención y, si lo activás, telemensajes con tu propio precio y cupo.</p>
+            <button type="button" class="ver-app">Verlo en la app</button>
+          </li>
+          <li data-publico="psicologo" data-invitar="Tests con resultado en vivo" data-detalle="En la app asignás un cuestionario, el paciente lo completa en su celular y el resultado te llega al instante. El puntaje lo manejás vos.">
             <h3>Tests con resultado en vivo</h3>
-            <p>Asignás un cuestionario (empezamos con el PHQ-9), el paciente lo completa en su celular y el resultado te llega al instante. El puntaje lo manejás vos.</p>
+            <p>Asignás un cuestionario (PHQ-9, GAD-7, EPDS o un test de intereses vocacionales), el paciente lo completa en su celular y el resultado te llega al instante. El puntaje lo manejás vos.</p>
+            <button type="button" class="ver-app">Verlo en la app</button>
           </li>
-          <li>
-            <h3>Constancias en PDF</h3>
-            <p>Generás la constancia de atención con los datos del paciente y la compartís desde la app.</p>
+          <li data-publico="psicologo" data-invitar="Informes, constancias y certificados" data-detalle="En la app generás constancias, informes y certificados con tu firma y tu membrete, y los compartís desde ahí.">
+            <h3>Informes, constancias y certificados</h3>
+            <p>Generás los documentos de tu consulta con tu firma y tu membrete, y los compartís desde la app.</p>
+            <button type="button" class="ver-app">Verlo en la app</button>
           </li>
-          <li>
+          <li data-publico="psicologo" data-invitar="Fichas e ingresos" data-detalle="En la app llevás las fichas de tus pacientes, tus consultas por lugar de atención y tus ingresos registrados, todo en un solo lugar.">
+            <h3>Fichas e ingresos</h3>
+            <p>Las fichas de tus pacientes, tus consultas por lugar de atención y tus ingresos, en un solo lugar.</p>
+            <button type="button" class="ver-app">Verlo en la app</button>
+          </li>
+          <li data-publico="psicologo" data-invitar="Audios guía" data-detalle="En la app grabás audios para acompañar a tus pacientes entre una consulta y otra.">
+            <h3>Audios guía</h3>
+            <p>Grabás audios para acompañar a tus pacientes.</p>
+            <button type="button" class="ver-app">Verlo en la app</button>
+          </li>
+          <li data-publico="psicologo" data-invitar="Código de invitación" data-detalle="En la app tenés un código personal para vincular a tus pacientes a tu consulta.">
             <h3>Código de invitación</h3>
             <p>Cada psicólogo tiene un código personal para vincular a sus pacientes a su consulta.</p>
+            <button type="button" class="ver-app">Verlo en la app</button>
+          </li>
+          <li data-publico="psicologo" data-invitar="Avisos de reservas" data-detalle="En la app, si activás las notificaciones, te avisamos cuando llega una solicitud de reserva. El aviso nunca incluye datos clínicos.">
+            <h3>Avisos de reservas</h3>
+            <p>Si activás las notificaciones, te avisamos cuando llega una solicitud de reserva.</p>
+            <button type="button" class="ver-app">Verlo en la app</button>
           </li>
         </ul>
       </div>
@@ -166,6 +232,23 @@
       </div>
     </section>
   </main>
+
+  <dialog class="invitacion" id="invitacion" aria-labelledby="invitacion-titulo">
+    <div class="invitacion__caja">
+      <button type="button" class="invitacion__cerrar" data-cerrar aria-label="Cerrar">&times;</button>
+      <p class="invitacion__etiqueta" id="invitacion-etiqueta">Se hace dentro de la app</p>
+      <h2 id="invitacion-titulo">Alivia</h2>
+      <p id="invitacion-detalle"></p>
+      <p class="invitacion__ayuda" id="invitacion-ayuda" hidden>Si necesitás ayuda ahora mismo, <a href="tel:155">llamá al 155</a>: es gratis y atiende las 24 horas.</p>
+      <p class="estado" data-sin-link>Alivia está en desarrollo. Escribinos y te avisamos cuando se pueda descargar.</p>
+      <p class="estado" data-con-link hidden>Alivia ya está lista para descargar.</p>
+      <div class="acciones">
+        <a class="boton" id="invitacion-paciente" data-descarga href="mailto:alannasoft.py@gmail.com?subject=Quiero%20que%20me%20avisen%20cuando%20Alivia%20est%C3%A9%20lista">Quiero que me avisen</a>
+        <a class="boton" id="invitacion-psicologo" data-descarga href="mailto:alannasoft.py@gmail.com?subject=Quiero%20sumarme%20a%20Alivia%20como%20psic%C3%B3logo%2Fa" hidden>Quiero sumarme</a>
+        <button type="button" class="boton boton--secundario" data-cerrar>Seguir mirando</button>
+      </div>
+    </div>
+  </dialog>
 
   <footer class="pie">
     <div class="contenedor pie__rejilla">
