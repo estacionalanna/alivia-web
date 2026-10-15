@@ -34,7 +34,7 @@
     <div class="contenedor">
       <article class="legal__cuerpo">
         <h1>Política de privacidad de Alivia</h1>
-        <p class="fecha">Última actualización: 10 de octubre de 2026</p>
+        <p class="fecha">Última actualización: 14 de octubre de 2026</p>
 
         <section class="resumen" aria-labelledby="resumen-titulo">
           <h2 id="resumen-titulo">En resumen</h2>
@@ -83,6 +83,7 @@
           <li>Tu contraseña. Se gestiona con Firebase Authentication, un servicio de Google. Nosotros no podemos ver tu contraseña.</li>
           <li>Tu rol en la app (paciente o psicólogo) y un identificador interno de cuenta.</li>
           <li>La constancia de que aceptaste esta política al registrarte.</li>
+          <li>La confirmación de tu correo: desde octubre de 2026, las cuentas nuevas tienen que abrir un enlace que enviamos al correo del registro antes de usar la app (el envío lo hace Firebase Authentication). Es para comprobar que el correo es tuyo.</li>
         </ul>
 
         <h3>De pacientes</h3>
@@ -116,6 +117,7 @@
           <li>Tu firma y sello, si decidís subirlos como imagen para usarlos en tus documentos.</li>
           <li>Las fichas de tus pacientes, las consultas por lugar, tus ingresos registrados y los documentos que generás con la app: constancias, informes y certificados.</li>
           <li>Los audios guía que grabes para tus pacientes, si usás esa función.</li>
+          <li>Las presentaciones que armes con la app (por ejemplo, para una charla). El borrador y el logo de una institución, si lo elegís, se guardan solo en tu celular. Al tocar “Generar”, el texto y el logo se envían a nuestro servidor únicamente para armar el archivo de PowerPoint, que se te devuelve al instante: no los guardamos ni los usamos para otra cosa. Si el contenido incluye datos de pacientes, es tu responsabilidad como profesional.</li>
           <li>Tu cuenta con Alivia: el monto y la comisión de cada consulta confirmada, tu saldo de comisión pendiente, las liquidaciones registradas, el aviso de transferencia que marques en la app y, si corresponde, el estado de suspensión de tu cuenta.</li>
         </ul>
 
@@ -127,7 +129,7 @@
         <ul>
           <li><strong>Recordatorios y avisos locales.</strong> Los recordatorios de citas (psicólogos) y los avisos y recordatorios de pausas (pacientes) se programan en el propio celular. No envían datos a servidores. Por defecto no muestran el nombre del paciente en la pantalla bloqueada.</li>
           <li><strong>Notificaciones push.</strong> Son avisos que enviamos desde nuestros servidores, por ejemplo cuando una reserva se confirma o se rechaza, cuando llega una solicitud de reserva, cuando un psicólogo te envía un test, cuando un paciente completa un test o cuando un paciente se desvincula. Para enviarlos guardamos un identificador técnico de tu celular (token de notificaciones), que se borra cuando cerrás sesión, y tus preferencias de avisos. Solo funcionan si diste permiso.</li>
-          <li><strong>Qué nunca incluyen.</strong> El texto de una notificación es genérico y nunca contiene datos clínicos, resultados de cuestionarios ni el contenido de tu diario. Cuando un resultado requiere atención del profesional, el aviso solo dice que hay algo para revisar en la app.</li>
+          <li><strong>Qué nunca incluyen.</strong> El texto de una notificación es genérico y nunca contiene datos clínicos, resultados de cuestionarios, el contenido de tu diario ni el nombre de tu psicólogo. Cuando un resultado requiere atención del profesional, el aviso solo dice que hay algo para revisar en la app.</li>
         </ul>
 
         <h3>Lo que la app no hace</h3>
@@ -172,7 +174,7 @@
         <ul>
           <li><strong>Con el psicólogo que elegís.</strong> Si reservás, ve tu nombre, los datos de la reserva (día, horario, modalidad y monto) y tu comprobante de pago. No ve tu correo, tu teléfono, tu ciudad ni tu foto. Si te vinculás con su código, además recibe una copia de tu nombre y de tu correo del momento en que te vinculás, y la fecha del vínculo. Tu teléfono, tu ciudad y tu foto de perfil no los ve nadie más que vos. Si la consulta es presencial, el profesional te informa la dirección del consultorio cuando confirma la reserva.</li>
           <li><strong>En un telemensaje.</strong> Al reservar no ves ningún número. Cuando el psicólogo confirma tu reserva, ves su número de WhatsApp y vos le escribís primero, con un mensaje inicial que dice quién sos y que reservaste un telemensaje, sin datos de salud. Al escribirle por WhatsApp, el psicólogo ve tu número de teléfono.</li>
-          <li><strong>Con los pacientes.</strong> De cada psicólogo aprobado se muestran su nombre, foto, especialidades, matrícula, presentación, lugares donde atiende, si está en línea y su disponibilidad. Sus datos de cobro (QR y alias) se muestran solo en el paso de pago, al reservar. Los datos de contacto privados del psicólogo no se muestran en el buscador.</li>
+          <li><strong>Con los pacientes.</strong> De cada psicólogo aprobado se muestran su nombre, foto, especialidades, matrícula, presentación, lugares donde atiende, si está en línea y su disponibilidad. Sus datos de cobro (QR y alias) la app los muestra en el paso de pago, al reservar; como hacen falta para pagar, pueden verlos las personas con sesión iniciada en Alivia. Los datos de contacto privados del psicólogo no se muestran en el buscador.</li>
           <li><strong>Con Alivia (administración).</strong> Vemos los datos necesarios para aprobar psicólogos, controlar los saldos de comisión, gestionar suspensiones y dar soporte.</li>
           <li><strong>Con Google.</strong> Usamos Firebase (Authentication, Cloud Firestore y Cloud Storage) para las cuentas, la base de datos y los archivos que subís.</li>
           <li><strong>Con WhatsApp (Meta).</strong> Los telemensajes se conversan por WhatsApp, fuera de Alivia: esa comunicación se rige por las condiciones y la política de privacidad de WhatsApp, y Alivia no recibe ni guarda su contenido. Lo mismo si te escribimos o nos escribís por WhatsApp para verificar tu registro.</li>
@@ -224,12 +226,12 @@
         <h3>Qué se elimina</h3>
         <ul>
           <li><strong>Si sos paciente:</strong> tu perfil y foto, tus vínculos con psicólogos, los tests que respondiste, y tus comprobantes de pago. Lo que guardaste solo en tu celular (diario, pausas, persona de confianza) se borra al desinstalar la app o borrar sus datos.</li>
-          <li><strong>Si sos psicólogo:</strong> tu perfil, foto, QR de cobro, firma y membretes, tu agenda y lugares, tus audios guía, y las fichas, consultas, informes y tests de tus pacientes. Esto último no se puede recuperar: guardá antes lo que necesites, y tené en cuenta tu deber de conservar la historia clínica según las normas profesionales (sección 7).</li>
+          <li><strong>Si sos psicólogo:</strong> tu perfil, foto, QR de cobro, firma y membretes, tu agenda y lugares, tus audios guía, las fichas, consultas, informes y tests de tus pacientes, y todas las citas que recibiste junto con los comprobantes de pago que tus pacientes subieron en ellas. Esto no se puede recuperar: guardá antes lo que necesites, y tené en cuenta tu deber de conservar la historia clínica según las normas profesionales (sección 7).</li>
         </ul>
         <h3>Qué se conserva</h3>
         <ul>
-          <li>El registro de las consultas ya pagadas, sin tu nombre si eras paciente, porque es el comprobante de cobro del profesional y respalda el cálculo de la comisión.</li>
-          <li>El historial de comisiones y cuotas de los psicólogos con Alivia, como registro contable.</li>
+          <li>Si eliminás tu cuenta de paciente, el registro de tus consultas ya pagadas se conserva sin tu nombre y sin comprobante, porque es el respaldo de cobro del profesional y del cálculo de la comisión. Si quien elimina su cuenta es el psicólogo, esas citas se borran con ella.</li>
+          <li>El historial de comisiones y cuotas de los psicólogos con Alivia, como registro contable. No contiene datos de pacientes.</li>
           <li>Si un psicólogo armó una ficha clínica sobre vos, esa ficha forma parte de su historia clínica profesional (sección 7): queda bajo su responsabilidad, sin conexión con tu cuenta.</li>
         </ul>
         <h3>Cuándo no se puede eliminar todavía</h3>
@@ -239,9 +241,10 @@
         <h2 id="seguridad">10. Seguridad</h2>
         <ul>
           <li>La conexión entre la app y los servidores está cifrada.</li>
-          <li>Las contraseñas las gestiona Firebase Authentication; nosotros no las vemos.</li>
+          <li>Las contraseñas las gestiona Firebase Authentication; nosotros no las vemos. Deben tener al menos 8 caracteres, y las cuentas nuevas confirman su correo antes de entrar.</li>
           <li>Cada persona solo puede leer y modificar la información que le corresponde, por reglas de acceso en la base de datos y en el almacenamiento de archivos.</li>
           <li>Revisamos manualmente a cada psicólogo antes de publicar su perfil, y el acceso de administración está restringido a una cuenta.</li>
+          <li>Cuando la cuenta de un psicólogo se suspende por falta de pago, su agenda, fichas, informes y tests quedan en solo lectura también en la base de datos, no solo en la pantalla.</li>
           <li>Los archivos que subís tienen límites de tamaño y de tipo.</li>
         </ul>
         <p>Ningún sistema es completamente seguro. Si ocurre un incidente que afecte tus datos, te avisamos y tomamos medidas. Vos también podés cuidar tu cuenta: usá una contraseña que no repitas en otros servicios y cerrá sesión en equipos compartidos.</p>
