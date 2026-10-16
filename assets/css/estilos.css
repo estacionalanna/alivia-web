@@ -1,6 +1,6 @@
 /* Alivia web: estilos compartidos por index.html y privacidad.html
-   Paleta oficial "Lavanda suave" + una variante más oscura del acento (--acento-fuerte)
-   para texto y botones, porque #8B7FC7 sola no llega al contraste mínimo para texto. */
+   Paleta oficial "Ciruela suave" + una variante más oscura del acento (--acento-fuerte)
+   para texto y botones sobre fondos claros (contraste AA). */
 
 @font-face {
   font-family: "Alegreya";
@@ -32,11 +32,11 @@
 }
 
 :root {
-  --fondo: #F3F1FA;
-  --superficie: #C9C2E8;
-  --superficie-suave: #E6E2F4;
-  --acento: #8B7FC7;
-  --acento-fuerte: #5A4E9E;
+  --fondo: #F8F1F5;
+  --superficie: #E6CFDC;
+  --superficie-suave: #F0E2EA;
+  --acento: #8A4A74;
+  --acento-fuerte: #6E3A5B;
   --calido: #FBE3D0;
   --tinta: #3B3548;
   --tinta-suave: #5E576B;
@@ -672,6 +672,12 @@ button.boton {
 
 .pie .marca {
   color: var(--fondo);
+}
+/* El logo ciruela casi no se ve sobre el pie oscuro: va sobre un fondo claro. */
+.pie .marca img {
+  background: var(--fondo);
+  border-radius: 10px;
+  padding: 3px;
 }
 
 .pie__rejilla {
