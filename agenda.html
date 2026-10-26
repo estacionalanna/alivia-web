@@ -102,7 +102,7 @@
 
   <section id="principal" hidden>
     <h1 id="titulo">Agenda</h1>
-    <p class="suave">Cargá acá los turnos del policlínico. Quedan guardados en la agenda de tu profesional y los ve en su celular.</p>
+    <p class="suave">Cargá acá los turnos. Quedan guardados en la agenda de tu profesional y los ve en su celular.</p>
 
     <div class="tarjeta">
       <h2>Cargar turnos de un día</h2>
@@ -319,7 +319,7 @@
         var texto = r.guardadas === 1 ? 'Listo: 1 turno guardado.' : 'Listo: ' + r.guardadas + ' turnos guardados.';
         if (r.choques > 0) {
           texto += ' ' + (r.choques === 1 ? 'Uno coincide' : r.choques + ' coinciden') +
-            ' con otra consulta de tu profesional; ella lo va a ver marcado.';
+            ' con otra consulta de tu profesional; lo va a ver marcado.';
         }
         reiniciarFilas();
         return recargar().then(function () { aviso(r.choques > 0 ? 'info' : 'ok', texto); });
