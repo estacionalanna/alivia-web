@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#8A4A74">
+<title>Agenda · Alivia</title>
+<style>
+  :root {
+    --ciruela: #8A4A74;
+    --ciruela-oscuro: #6F3A5D;
+    --fondo: #F6EFF4;
+    --tarjeta: #FFFFFF;
+    --texto: #2B2230;
+    --suave: #6E6275;
+    --borde: #E4D6DF;
+    --error: #B3261E;
+    --ok: #2E6B4F;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--fondo);
+    color: var(--texto);
+    font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  main { max-width: 640px; margin: 0 auto; padding: 20px 16px 48px; }
+  h1 { font-size: 22px; margin: 4px 0 4px; }
+  h2 { font-size: 17px; margin: 0 0 12px; }
+  p { margin: 0 0 12px; }
+  .marca { color: var(--ciruela); font-weight: 700; letter-spacing: .2px; }
+  .suave { color: var(--suave); font-size: 14px; }
+  .tarjeta {
+    background: var(--tarjeta);
+    border: 1px solid var(--borde);
+    border-radius: 16px;
+    padding: 16px;
+    margin-top: 16px;
+  }
+  label { display: block; font-weight: 600; font-size: 14px; margin-bottom: 6px; }
+  input {
+    width: 100%;
+    min-height: 48px;
+    padding: 10px 12px;
+    font: inherit;
+    color: var(--texto);
+    background: #fff;
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+  }
+  input:focus { outline: 3px solid rgba(138, 74, 116, .35); border-color: var(--ciruela); }
+  .fila { display: grid; grid-template-columns: 112px 1fr 44px; gap: 8px; align-items: center; margin-bottom: 8px; }
+  .fila button.quitar { min-height: 48px; padding: 0; font-size: 20px; line-height: 1; }
+  button {
+    font: inherit;
+    font-weight: 700;
+    min-height: 48px;
+    padding: 10px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--ciruela);
+    background: #fff;
+    color: var(--ciruela);
+    cursor: pointer;
+  }
+  button.principal { background: var(--ciruela); color: #fff; width: 100%; margin-top: 12px; }
+  button.principal:active { background: var(--ciruela-oscuro); }
+  button.secundario { width: 100%; margin-top: 4px; }
+  button:disabled { opacity: .55; cursor: default; }
+  .aviso { border-radius: 12px; padding: 10px 12px; margin-top: 12px; font-size: 15px; }
+  .aviso.ok { background: #E8F3EC; color: var(--ok); }
+  .aviso.error { background: #FBE9E7; color: var(--error); }
+  .aviso.info { background: #F1E8EF; color: var(--ciruela-oscuro); }
+  .dia { font-weight: 700; margin: 14px 0 6px; text-transform: capitalize; }
+  .turno {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 0; border-bottom: 1px solid var(--borde);
+  }
+  .turno:last-child { border-bottom: 0; }
+  .turno .hora { font-weight: 700; min-width: 52px; }
+  .turno .nombre { flex: 1; overflow-wrap: anywhere; }
+  .turno button { min-height: 40px; padding: 4px 12px; font-size: 14px; }
+  [hidden] { display: none !important; }
+  .emergencia { margin-top: 24px; font-size: 13px; color: var(--suave); text-align: center; }
+</style>
+</head>
+<body>
+<main>
+  <div class="marca">Alivia</div>
+
+  <section id="cargando">
+    <h1>Un momento…</h1>
+    <p class="suave">Abriendo la agenda.</p>
+  </section>
+
+  <section id="invalido" hidden>
+    <h1>Este enlace no funciona</h1>
+    <p id="invalidoTexto">Pedile a tu profesional que te mande un enlace nuevo.</p>
+  </section>
+
+  <section id="principal" hidden>
+    <h1 id="titulo">Agenda</h1>
+    <p class="suave">Cargá acá los turnos del policlínico. Quedan guardados en la agenda de tu profesional y los ve en su celular.</p>
+
+    <div class="tarjeta">
+      <h2>Cargar turnos de un día</h2>
+      <label for="dia">Día</label>
+      <input id="dia" type="date">
+
+      <div style="margin-top:14px">
+        <label>Hora y nombre (o iniciales) del paciente</label>
+        <div id="filas"></div>
+        <button type="button" id="mas" class="secundario">+ Agregar otro turno</button>
+      </div>
+
+      <p class="suave" style="margin-top:12px">Escribí solo el nombre o las iniciales del paciente. No escribas diagnósticos ni motivos de consulta.</p>
+
+      <button type="button" id="guardar" class="principal">Guardar turnos del día</button>
+      <div id="mensaje" role="status" aria-live="polite" hidden></div>
+    </div>
+
+    <div class="tarjeta">
+      <h2>Ya cargados</h2>
+      <div id="lista"><p class="suave">Todavía no hay turnos cargados.</p></div>
+    </div>
+
+    <p class="emergencia">Si te equivocaste de nombre o de hora, volvé a cargar ese turno con el dato correcto y se reemplaza.</p>
+  </section>
+</main>
+
+<script>
+(function () {
+  'use strict';
+
+  // Cloud Function de Alivia (llamada "callable": se le manda {data: ...} y devuelve {result: ...}).
+  var URL_API = 'https://southamerica-east1-alivia-352d8.cloudfunctions.net/agendaSecretaria';
+
+  var $ = function (id) { return document.getElementById(id); };
+  var token = (/[#&]t=([A-Za-z0-9_-]{32})(?:&|$)/.exec(location.hash) || [])[1] || '';
+  var ocupado = false;
+
+  function mostrar(seccion) {
+    ['cargando', 'invalido', 'principal'].forEach(function (id) { $(id).hidden = id !== seccion; });
+  }
+
+  function invalido(texto) {
+    if (texto) $('invalidoTexto').textContent = texto;
+    mostrar('invalido');
+  }
+
+  function llamar(datos) {
+    datos.token = token;
+    return fetch(URL_API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ data: datos })
+    }).then(function (r) {
+      return r.json().catch(function () { return null; }).then(function (j) {
+        if (r.ok && j && j.result) return j.result;
+        var msg = j && j.error && j.error.message;
+        var e = new Error(msg && msg !== 'INTERNAL' ? msg : 'Algo salió mal. Probá de nuevo en un rato.');
+        e.estado = j && j.error && j.error.status;
+        throw e;
+      });
+    }, function () {
+      throw new Error('No hay conexión. Revisá tu internet y probá de nuevo.');
+    });
+  }
+
+  function hoyISO() {
+    var f = new Date();
+    return f.getFullYear() + '-' + String(f.getMonth() + 1).padStart(2, '0') + '-' + String(f.getDate()).padStart(2, '0');
+  }
+
+  function textoDia(iso) {
+    var p = iso.split('-').map(Number);
+    return new Date(p[0], p[1] - 1, p[2]).toLocaleDateString('es', { weekday: 'long', day: 'numeric', month: 'long' });
+  }
+
+  function aviso(tipo, texto) {
+    var m = $('mensaje');
+    m.className = 'aviso ' + tipo;
+    m.textContent = texto;
+    m.hidden = false;
+  }
+
+  // ── Filas de turnos ──
+  function nuevaFila(hora, nombre) {
+    var fila = document.createElement('div');
+    fila.className = 'fila';
+
+    var h = document.createElement('input');
+    h.type = 'time';
+    h.setAttribute('aria-label', 'Hora');
+    h.value = hora || '';
+
+    var n = document.createElement('input');
+    n.type = 'text';
+    n.maxLength = 60;
+    n.placeholder = 'Nombre';
+    n.autocomplete = 'off';
+    n.setAttribute('aria-label', 'Nombre del paciente');
+    n.value = nombre || '';
+    n.addEventListener('keydown', function (e) {
+      if (e.key !== 'Enter') return;
+      e.preventDefault();
+      if (fila === $('filas').lastElementChild && h.value && n.value.trim()) {
+        var otra = nuevaFila('', '');
+        $('filas').appendChild(otra);
+        otra.querySelector('input').focus();
+      }
+    });
+
+    var x = document.createElement('button');
+    x.type = 'button';
+    x.className = 'quitar';
+    x.textContent = '×';
+    x.setAttribute('aria-label', 'Quitar esta fila');
+    x.addEventListener('click', function () {
+      if ($('filas').children.length > 1) fila.remove();
+      else { h.value = ''; n.value = ''; }
+    });
+
+    fila.appendChild(h);
+    fila.appendChild(n);
+    fila.appendChild(x);
+    return fila;
+  }
+
+  function reiniciarFilas() {
+    $('filas').textContent = '';
+    $('filas').appendChild(nuevaFila('', ''));
+  }
+
+  // ── Lista de lo ya cargado ──
+  function pintarLista(entradas) {
+    var cont = $('lista');
+    cont.textContent = '';
+    if (!entradas.length) {
+      var vacio = document.createElement('p');
+      vacio.className = 'suave';
+      vacio.textContent = 'Todavía no hay turnos cargados.';
+      cont.appendChild(vacio);
+      return;
+    }
+    var diaActual = '';
+    entradas.forEach(function (e) {
+      if (e.fecha !== diaActual) {
+        diaActual = e.fecha;
+        var d = document.createElement('div');
+        d.className = 'dia';
+        d.textContent = textoDia(e.fecha);
+        cont.appendChild(d);
+      }
+      var t = document.createElement('div');
+      t.className = 'turno';
+      var hh = document.createElement('span');
+      hh.className = 'hora';
+      hh.textContent = e.horario;
+      var nn = document.createElement('span');
+      nn.className = 'nombre';
+      nn.textContent = e.nombre;
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = 'Quitar';
+      b.setAttribute('aria-label', 'Quitar el turno de ' + e.nombre + ' a las ' + e.horario);
+      b.addEventListener('click', function () { quitar(e, b); });
+      t.appendChild(hh); t.appendChild(nn); t.appendChild(b);
+      cont.appendChild(t);
+    });
+  }
+
+  function recargar() {
+    return llamar({ accion: 'ver' }).then(function (r) {
+      $('titulo').textContent = r.profesional ? 'Agenda de ' + r.profesional : 'Agenda';
+      pintarLista(r.entradas);
+      return r;
+    });
+  }
+
+  function quitar(e, boton) {
+    if (ocupado) return;
+    if (!window.confirm('¿Quitar el turno de ' + e.nombre + ' del ' + textoDia(e.fecha) + ' a las ' + e.horario + '?')) return;
+    ocupado = true;
+    boton.disabled = true;
+    llamar({ accion: 'borrar', id: e.id })
+      .then(recargar)
+      .then(function () { aviso('ok', 'Turno quitado.'); })
+      .catch(function (err) { aviso('error', err.message); boton.disabled = false; })
+      .then(function () { ocupado = false; });
+  }
+
+  function guardar() {
+    if (ocupado) return;
+    var dia = $('dia').value;
+    if (!dia) return aviso('error', 'Elegí el día.');
+    if (dia < hoyISO()) return aviso('error', 'Ese día ya pasó.');
+
+    var entradas = [];
+    var filas = $('filas').children;
+    for (var i = 0; i < filas.length; i++) {
+      var inputs = filas[i].querySelectorAll('input');
+      var hora = inputs[0].value;
+      var nombre = inputs[1].value.trim();
+      if (!hora && !nombre) continue; // fila vacía: se ignora
+      if (!hora) return aviso('error', 'Falta la hora en la fila ' + (i + 1) + '.');
+      if (!nombre) return aviso('error', 'Falta el nombre en la fila ' + (i + 1) + '.');
+      entradas.push({ fecha: dia, horario: hora, nombre: nombre });
+    }
+    if (!entradas.length) return aviso('error', 'Escribí al menos un turno.');
+
+    ocupado = true;
+    $('guardar').disabled = true;
+    $('guardar').textContent = 'Guardando…';
+    llamar({ accion: 'cargar', entradas: entradas })
+      .then(function (r) {
+        var texto = r.guardadas === 1 ? 'Listo: 1 turno guardado.' : 'Listo: ' + r.guardadas + ' turnos guardados.';
+        if (r.choques > 0) {
+          texto += ' ' + (r.choques === 1 ? 'Uno coincide' : r.choques + ' coinciden') +
+            ' con otra consulta de tu profesional; ella lo va a ver marcado.';
+        }
+        reiniciarFilas();
+        return recargar().then(function () { aviso(r.choques > 0 ? 'info' : 'ok', texto); });
+      })
+      .catch(function (err) { aviso('error', err.message); })
+      .then(function () {
+        ocupado = false;
+        $('guardar').disabled = false;
+        $('guardar').textContent = 'Guardar turnos del día';
+      });
+  }
+
+  // ── Arranque ──
+  if (!token) {
+    invalido('Abrí el enlace completo que te mandó tu profesional.');
+    return;
+  }
+
+  $('dia').min = hoyISO();
+  reiniciarFilas();
+  $('mas').addEventListener('click', function () {
+    var f = nuevaFila('', '');
+    $('filas').appendChild(f);
+    f.querySelector('input').focus();
+  });
+  $('guardar').addEventListener('click', guardar);
+
+  recargar().then(function () { mostrar('principal'); }, function (err) {
+    invalido(err.estado === 'PERMISSION_DENIED' || err.estado === 'FAILED_PRECONDITION' ? err.message : 'No pudimos abrir la agenda: ' + err.message);
+  });
+})();
+</script>
+</body>
+</html>
